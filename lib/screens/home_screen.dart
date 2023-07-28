@@ -5,7 +5,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
 
-  static String id = 'Screen1';
+  static String id = 'HomeScreen';
 
   @override
   Widget build(BuildContext context) {
