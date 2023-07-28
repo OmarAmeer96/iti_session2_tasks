@@ -26,32 +26,34 @@ class SplashScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AnimatedSplashScreen(
-      splash: Column(
-        children: [
-          Image.asset(
-            "assets/images/logo.png",
-            width: 200,
-            height: 200,
-          ),
-          const SizedBox(
-            height: 10,
-          ),
-          const Text(
-            "DreamVista Realty",
-            style: TextStyle(
-              fontFamily: "JosefinSans",
-              fontSize: 35,
-              fontWeight: FontWeight.bold,
-              color: Color(0xffFEFAE0),
-            ),
-          )
-        ],
-      ),
+      splash: Lottie.asset("assets/images/HouseAnimation.json"),
+
+      // Column(
+      //   children: [
+      //     Image.asset(
+      //       "assets/images/logo.png",
+      //       width: 200,
+      //       height: 200,
+      //     ),
+      //     const SizedBox(
+      //       height: 10,
+      //     ),
+      //     const Text(
+      //       "DreamVista Realty",
+      //       style: TextStyle(
+      //         fontFamily: "JosefinSans",
+      //         fontSize: 35,
+      //         fontWeight: FontWeight.bold,
+      //         color: Color(0xffFEFAE0),
+      //       ),
+      //     )
+      //   ],
+      // ),
       backgroundColor: const Color(0xffDDA15E),
       nextScreen: const HomeScreen(),
-      splashIconSize: 250,
-      duration: 1000,
-      splashTransition: SplashTransition.scaleTransition,
+      splashIconSize: 350,
+      duration: 2100,
+      splashTransition: SplashTransition.fadeTransition,
       pageTransitionType: PageTransitionType.topToBottom,
     );
   }
