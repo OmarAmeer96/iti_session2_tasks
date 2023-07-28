@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:iti_flutter_session2/screens/screen_one.dart';
-import 'package:iti_flutter_session2/screens/screen_two.dart';
+import 'package:iti_flutter_session2/screens/home_screen.dart';
+import 'package:iti_flutter_session2/screens/splash_screen_one.dart';
 
 void main() {
   runApp(const MyApp());
@@ -14,8 +14,8 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       routes: {
-        ScreenOne.id: (context) => const ScreenOne(),
-        ScreenTwo.id: (context) => const ScreenTwo(),
+        HomeScreen.id: (context) => const HomeScreen(),
+        SplashScreenOne.id: (context) => const SplashScreenOne(),
       },
       initialRoute: 'Screen1',
     );

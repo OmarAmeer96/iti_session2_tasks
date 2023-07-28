@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:iti_flutter_session2/consts.dart';
-import 'package:iti_flutter_session2/screens/screen_two.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-class ScreenOne extends StatelessWidget {
-  const ScreenOne({super.key});
+class HomeScreen extends StatelessWidget {
+  const HomeScreen({super.key});
 
   static String id = 'Screen1';
 
@@ -14,11 +13,10 @@ class ScreenOne extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       home: Scaffold(
         backgroundColor: const Color(0xffFEFAE0),
-        appBar: _buildAppBar(context),
         body: Column(
           children: [
             const SizedBox(
-              height: 60,
+              height: 140,
             ),
             Center(
               child: _buildCircleAvatar(),
@@ -75,7 +73,7 @@ class ScreenOne extends StatelessWidget {
               "OR",
               style: TextStyle(
                 fontFamily: "JosefinSans",
-                fontSize: 24,
+                fontSize: 22,
                 color: Color(0xff283618),
               ),
             ),
@@ -122,26 +120,6 @@ class ScreenOne extends StatelessWidget {
         width: 110,
         height: 110,
       ),
-    );
-  }
-
-  AppBar _buildAppBar(BuildContext context) {
-    return AppBar(
-      backgroundColor: const Color(0xffFEFAE0),
-      elevation: 0,
-      actions: [
-        GestureDetector(
-          onTap: () => Navigator.pushNamed(context, ScreenTwo.id),
-          child: const Icon(
-            Icons.keyboard_arrow_right_rounded,
-            size: 40,
-            color: Color(0xff283618),
-          ),
-        ),
-        const SizedBox(
-          width: 5,
-        ),
-      ],
     );
   }
 }

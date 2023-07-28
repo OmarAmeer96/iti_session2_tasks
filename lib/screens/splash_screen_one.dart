@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:iti_flutter_session2/screens/screen_one.dart';
+import 'package:iti_flutter_session2/screens/home_screen.dart';
 
-class ScreenTwo extends StatelessWidget {
-  const ScreenTwo({super.key});
+class SplashScreenOne extends StatelessWidget {
+  const SplashScreenOne({super.key});
 
   static String id = 'Screen2';
 
@@ -13,7 +13,7 @@ class ScreenTwo extends StatelessWidget {
       home: Scaffold(
         appBar: AppBar(
           leading: GestureDetector(
-            onTap: () => Navigator.pushNamed(context, ScreenOne.id),
+            onTap: () => Navigator.pushNamed(context, HomeScreen.id),
             child: const Icon(
               Icons.keyboard_arrow_left_rounded,
               size: 40,
