@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:iti_flutter_session2/screens/get_started.dart';
 import 'package:iti_flutter_session2/screens/home_screen.dart';
+import 'package:iti_flutter_session2/screens/login_screen.dart';
 import 'package:iti_flutter_session2/screens/splash_screen.dart';
 
 void main() {
@@ -16,8 +18,10 @@ class MyApp extends StatelessWidget {
       routes: {
         HomeScreen.id: (context) => const HomeScreen(),
         SplashScreen.id: (context) => const SplashScreen(),
+        LoginScreen.id: (context) => const LoginScreen(),
+        GetStarted.id: (context) => const GetStarted(),
       },
-      initialRoute: SplashScreen.id,
+      initialRoute: LoginScreen.id,
     );
   }
 }

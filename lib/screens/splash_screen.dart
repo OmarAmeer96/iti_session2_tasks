@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:iti_flutter_session2/screens/home_screen.dart';
+import 'package:iti_flutter_session2/screens/get_started.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:lottie/lottie.dart';
 import 'package:animated_splash_screen/animated_splash_screen.dart';
@@ -36,7 +36,7 @@ class SplashScreen extends StatelessWidget {
       //   ],
       // ),
       backgroundColor: const Color(0xffDDA15E),
-      nextScreen: const HomeScreen(),
+      nextScreen: const GetStarted(),
       splashIconSize: 350,
       duration: 2100,
       splashTransition: SplashTransition.fadeTransition,
