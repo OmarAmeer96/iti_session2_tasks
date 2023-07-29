@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
         LoginScreen.id: (context) => const LoginScreen(),
         GetStarted.id: (context) => const GetStarted(),
       },
-      initialRoute: LoginScreen.id,
+      initialRoute: SplashScreen.id,
     );
   }
 }

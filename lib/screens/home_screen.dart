@@ -1,12 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:iti_flutter_session2/consts.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:iti_flutter_session2/screens/login_screen.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
 
   static String id = 'HomeScreen';
 
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -46,22 +52,34 @@ class HomeScreen extends StatelessWidget {
             const SizedBox(
               height: 135,
             ),
-            Container(
-              width: 370,
-              height: 55,
-              decoration: const BoxDecoration(
-                color: Color(0xffBC6C25),
-                borderRadius: BorderRadius.all(
-                  Radius.circular(17),
+            InkWell(
+              onTap: () => Navigator.pushNamed(context, LoginScreen.id),
+              child: Container(
+                width: 370,
+                height: 55,
+                decoration: BoxDecoration(
+                  color: const Color(0xffBC6C25),
+                  borderRadius: const BorderRadius.all(
+                    Radius.circular(17),
+                  ),
+                  boxShadow: [
+                    BoxShadow(
+                      color:
+                          Colors.black.withOpacity(0.5), // Color of the shadow
+                      spreadRadius: 2, // Spread radius of the shadow
+                      blurRadius: 7, // Blur radius of the shadow
+                      offset: const Offset(0, 3), // Offset of the shadow
+                    ),
+                  ],
                 ),
-              ),
-              child: const Center(
-                child: Text(
-                  "Login With Email",
-                  style: TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.white,
+                child: const Center(
+                  child: Text(
+                    "Login With Phone Number",
+                    style: TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white,
+                    ),
                   ),
                 ),
               ),
@@ -89,10 +107,10 @@ class HomeScreen extends StatelessWidget {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
-                    _buildSMIcon(context, FontAwesomeIcons.apple),
-                    _buildSMIcon(context, FontAwesomeIcons.googlePlus),
-                    _buildSMIcon(context, FontAwesomeIcons.twitter),
-                    _buildSMIcon(context, FontAwesomeIcons.facebook),
+                    _buildSMIcon(context, "assets/images/Apple.svg"),
+                    _buildSMIcon(
+                        context, "assets/images/google sign up button.svg"),
+                    _buildSMIcon(context, "assets/images/icons-social.svg"),
                   ],
                 ),
               ),
@@ -103,11 +121,41 @@ class HomeScreen extends StatelessWidget {
     );
   }
 
-  Icon _buildSMIcon(BuildContext context, IconData icon) {
-    return Icon(
-      icon,
-      size: 40,
-      color: const Color(0xff283618),
+  Widget _buildSMIcon(BuildContext context, String iconPath) {
+    return InkWell(
+      onTap: () {
+        const SnackBar(
+          content: Text('Not Working Yet :)'),
+          duration: Duration(seconds: 2),
+        );
+      },
+      child: Container(
+        width: 45,
+        height: 45,
+        decoration: BoxDecoration(
+          shape: BoxShape.circle,
+          border: Border.all(
+            color: const Color(0xFF283618),
+            width: 2,
+          ),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.grey.withOpacity(0.2), // Color of the shadow
+              spreadRadius: 2, // Spread radius of the shadow
+              blurRadius: 7, // Blur radius of the shadow
+              offset: const Offset(0, 3), // Offset of the shadow
+            ),
+          ],
+        ),
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: SvgPicture.asset(
+            iconPath,
+            width: 32,
+            height: 32,
+          ),
+        ),
+      ),
     );
   }
 

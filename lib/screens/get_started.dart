@@ -29,7 +29,7 @@ class GetStarted extends StatelessWidget {
               ),
             ),
             const Positioned(
-              top: 80,
+              top: 120,
               child: Padding(
                 padding: EdgeInsets.only(left: 16),
                 child: Column(

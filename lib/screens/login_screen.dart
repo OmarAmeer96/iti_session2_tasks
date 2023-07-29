@@ -12,8 +12,10 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   final _phoneController = TextEditingController();
   final _passwordController = TextEditingController();
+  final _nameController = TextEditingController();
   bool obscureText = true;
   final _form = GlobalKey<FormState>();
+  double _containerHeight = 570; // Initial height of the container
 
   void _togglePasswordText() {
     setState(() {
@@ -27,6 +29,20 @@ class _LoginScreenState extends State<LoginScreen> {
       debugShowCheckedModeBanner: false,
       home: Scaffold(
         backgroundColor: const Color(0xffFEFAE0),
+        appBar: AppBar(
+          backgroundColor: const Color(0xffFEFAE0),
+          elevation: 0,
+          leading: InkWell(
+            onTap: () {
+              Navigator.pop(context);
+            },
+            child: const Icon(
+              Icons.arrow_back_ios_new,
+              color: Color(0xff283618),
+              size: 26,
+            ),
+          ),
+        ),
         body: SingleChildScrollView(
           child: GestureDetector(
             onTap: FocusScope.of(context).unfocus,
@@ -36,13 +52,10 @@ class _LoginScreenState extends State<LoginScreen> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   const Padding(
-                    padding: EdgeInsets.all(30.0),
+                    padding: EdgeInsets.symmetric(horizontal: 30, vertical: 20),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        SizedBox(
-                          height: 80,
-                        ),
                         Text(
                           "Welcome to our",
                           style: TextStyle(
@@ -62,17 +75,15 @@ class _LoginScreenState extends State<LoginScreen> {
                             color: Color(0xffBC6C25),
                           ),
                         ),
-                        SizedBox(
-                          height: 20,
-                        )
                       ],
                     ),
                   ),
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 20),
-                    child: Container(
+                    child: AnimatedContainer(
                       width: double.infinity,
-                      height: 580,
+                      height: _containerHeight,
+                      duration: const Duration(milliseconds: 0),
                       decoration: BoxDecoration(
                         color: const Color(0xffDDA15E),
                         borderRadius: BorderRadius.circular(20),
@@ -92,8 +103,14 @@ class _LoginScreenState extends State<LoginScreen> {
                                 height: 8,
                               ),
                               SizedBox(
-                                height: 50,
                                 child: TextFormField(
+                                  validator: (value) {
+                                    if (_nameController.text.isEmpty) {
+                                      return "This field is required";
+                                    }
+                                    return null;
+                                  },
+                                  controller: _nameController,
                                   decoration: InputDecoration(
                                     hintText: "Enter your name",
                                     filled: true,
@@ -114,11 +131,16 @@ class _LoginScreenState extends State<LoginScreen> {
                                 height: 8,
                               ),
                               SizedBox(
-                                height: 50,
                                 child: TextFormField(
                                   validator: (value) {
-                                    if (_phoneController.text.length != 11) {
+                                    if (_phoneController.text.isEmpty) {
+                                      return "This field is required";
+                                    } else if (_phoneController.text.length !=
+                                        11) {
                                       return "Wrong number, should be 11 digits";
+                                    } else if (_phoneController.text[0] !=
+                                        "0") {
+                                      return "Wrong number, should begin with 0";
                                     }
                                     return null;
                                   },
@@ -143,10 +165,12 @@ class _LoginScreenState extends State<LoginScreen> {
                                 height: 8,
                               ),
                               SizedBox(
-                                height: 50,
                                 child: TextFormField(
                                   validator: (value) {
-                                    if (_passwordController.text.length < 6) {
+                                    if (_nameController.text.isEmpty) {
+                                      return "This field is required";
+                                    } else if (_passwordController.text.length <
+                                        6) {
                                       return "Wrong password, should be more than 6 characters";
                                     }
                                     return null;
@@ -158,9 +182,9 @@ class _LoginScreenState extends State<LoginScreen> {
                                       onTap: _togglePasswordText,
                                       child: Icon(
                                         obscureText
-                                            ? Icons.visibility
-                                            : Icons.visibility_off,
-                                        color: Color(0xFF283618),
+                                            ? Icons.visibility_off
+                                            : Icons.visibility,
+                                        color: const Color(0xFF283618),
                                       ),
                                     ),
                                     hintText: "Enter your password",
@@ -190,8 +214,19 @@ class _LoginScreenState extends State<LoginScreen> {
                                   const Spacer(),
                                   InkWell(
                                     onTap: () {
-                                      _form.currentState!.validate();
-                                      setState(() {});
+                                      if (_form.currentState!.validate()) {
+                                        // No validation errors, reset container height
+                                        setState(() {
+                                          _containerHeight =
+                                              570; // Original height
+                                        });
+                                      } else {
+                                        // Validation errors, adjust container height
+                                        setState(() {
+                                          _containerHeight =
+                                              630; // Adjust to accommodate error message
+                                        });
+                                      }
                                     },
                                     child: Container(
                                       width: 60,
@@ -199,6 +234,18 @@ class _LoginScreenState extends State<LoginScreen> {
                                       decoration: BoxDecoration(
                                         color: const Color(0xFF283618),
                                         borderRadius: BorderRadius.circular(15),
+                                        boxShadow: [
+                                          BoxShadow(
+                                            color: Colors.black.withOpacity(
+                                                0.5), // Color of the shadow
+                                            spreadRadius:
+                                                1, // Spread radius of the shadow
+                                            blurRadius:
+                                                6, // Blur radius of the shadow
+                                            offset: const Offset(
+                                                0, 3), // Offset of the shadow
+                                          ),
+                                        ],
                                       ),
                                       child: const Icon(
                                         Icons.arrow_right_alt_outlined,
