@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:iti_flutter_session2/screens/popular_pack_screen.dart';
 import 'package:iti_flutter_session2/screens/store_home_screen.dart';
 import 'package:iti_flutter_session2/screens/get_started.dart';
 import 'package:iti_flutter_session2/screens/home_screen.dart';
@@ -24,6 +25,7 @@ class MyApp extends StatelessWidget {
         GetStarted.id: (context) => const GetStarted(),
         OnBoarding.id: (context) => OnBoarding(),
         StoreHomeScreen.id: (context) => const StoreHomeScreen(),
+        PopularPackScreen.id: (context) => PopularPackScreen(),
       },
       initialRoute: StoreHomeScreen.id,
     );

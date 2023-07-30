@@ -1,5 +1,8 @@
+import 'package:curved_navigation_bar/curved_navigation_bar.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:iti_flutter_session2/screens/popular_pack_screen.dart';
 
 class StoreHomeScreen extends StatelessWidget {
   const StoreHomeScreen({super.key});
@@ -9,6 +12,22 @@ class StoreHomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      bottomNavigationBar: CurvedNavigationBar(
+        backgroundColor: Colors.transparent,
+        color: Colors.grey[300]!,
+        buttonBackgroundColor: Colors.green[400],
+        animationDuration: const Duration(milliseconds: 300),
+        animationCurve: Curves.fastOutSlowIn,
+        items: const <Widget>[
+          Icon(Icons.home, size: 30),
+          Icon(CupertinoIcons.shopping_cart, size: 30),
+          Icon(Icons.person, size: 30),
+          Icon(Icons.settings, size: 30),
+        ],
+        onTap: (index) {
+          //Handle button tap
+        },
+      ),
       appBar: _buildAppBar(),
       backgroundColor: Colors.white,
       body: Padding(
@@ -24,8 +43,16 @@ class StoreHomeScreen extends StatelessWidget {
                 child: Image.asset(
                     "assets/images/WhatsApp Image 2023-07-30 at 13.02.56.png"),
               ),
-              _buildCustomCollection("Popular Pack"),
-              _buildCustomCollection("Our New Item"),
+              _buildCustomCollection(
+                "Popular Pack",
+                onTap: () {
+                  Navigator.pushNamed(context, PopularPackScreen.id);
+                },
+              ),
+              _buildCustomCollection(
+                "Our New Item",
+                onTap: () {},
+              ),
             ],
           ),
         ),
@@ -33,7 +60,7 @@ class StoreHomeScreen extends StatelessWidget {
     );
   }
 
-  Column _buildCustomCollection(String title) {
+  Column _buildCustomCollection(String title, {required Function onTap}) {
     return Column(
       children: [
         const SizedBox(
@@ -51,12 +78,17 @@ class StoreHomeScreen extends StatelessWidget {
                 ),
               ),
               const Spacer(),
-              const Text(
-                "View All",
-                style: TextStyle(
-                  fontSize: 16,
-                  fontFamily: "Mulish-Bold",
-                  color: Colors.green,
+              InkWell(
+                onTap: () {
+                  onTap();
+                },
+                child: const Text(
+                  "View All",
+                  style: TextStyle(
+                    fontSize: 16,
+                    fontFamily: "Mulish-Bold",
+                    color: Colors.green,
+                  ),
                 ),
               ),
             ],
@@ -68,7 +100,7 @@ class StoreHomeScreen extends StatelessWidget {
         SizedBox(
           height: 231,
           child: ListView.builder(
-            itemBuilder: (context, index) => _buildCustomCard(),
+            itemBuilder: (context, index) => buildCustomCard(context),
             scrollDirection: Axis.horizontal,
             itemCount: 20,
           ),
@@ -84,7 +116,7 @@ class StoreHomeScreen extends StatelessWidget {
       ),
       actions: [
         CircleAvatar(
-          backgroundColor: Colors.grey[300],
+          backgroundColor: Colors.grey[200],
           child: const Icon(
             Icons.search,
             size: 30,
@@ -102,7 +134,7 @@ class StoreHomeScreen extends StatelessWidget {
         child: Row(
           children: [
             CircleAvatar(
-              backgroundColor: Colors.grey[300],
+              backgroundColor: Colors.grey[200],
               child: const Icon(
                 Icons.list,
                 size: 30,
@@ -160,7 +192,7 @@ class StoreHomeScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildCustomCard() {
+  Widget buildCustomCard(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 10),
       child: Container(
@@ -171,7 +203,7 @@ class StoreHomeScreen extends StatelessWidget {
             width: 1,
             color: Colors.grey.withOpacity(0.7),
           ),
-          borderRadius: BorderRadius.circular(30),
+          borderRadius: BorderRadius.circular(25),
         ),
         child: Padding(
           padding: const EdgeInsets.symmetric(
@@ -214,19 +246,19 @@ class StoreHomeScreen extends StatelessWidget {
               const SizedBox(
                 height: 6,
               ),
-              const Row(
+              Row(
                 children: [
-                  Text(
+                  const Text(
                     "\$35",
                     style: TextStyle(
                       fontSize: 22,
                       fontFamily: "Mulish-Bold",
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     width: 6,
                   ),
-                  Text(
+                  const Text(
                     "50.32",
                     style: TextStyle(
                       fontSize: 16,
@@ -235,20 +267,33 @@ class StoreHomeScreen extends StatelessWidget {
                       decoration: TextDecoration.lineThrough,
                     ),
                   ),
-                  Spacer(),
-                  CircleAvatar(
-                    radius: 16,
-                    backgroundColor: Colors.green,
-                    child: Icon(
-                      Icons.add,
-                      color: Colors.white,
+                  const Spacer(),
+                  GestureDetector(
+                    onTap: () {
+                      showSnackBar(context);
+                    },
+                    child: const CircleAvatar(
+                      radius: 16,
+                      backgroundColor: Colors.green,
+                      child: Icon(
+                        Icons.add,
+                        color: Colors.white,
+                      ),
                     ),
-                  )
+                  ),
                 ],
               ),
             ],
           ),
         ),
+      ),
+    );
+  }
+
+  void showSnackBar(BuildContext context) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(
+        content: Text('Successfully added to the cart!'),
       ),
     );
   }
