@@ -6,6 +6,7 @@ import 'package:iti_flutter_session2/screens/home_screen.dart';
 import 'package:iti_flutter_session2/screens/login_screen.dart';
 import 'package:iti_flutter_session2/screens/onboarding.dart';
 import 'package:iti_flutter_session2/screens/splash_screen.dart';
+import 'package:iti_flutter_session2/screens/text_field_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -25,9 +26,10 @@ class MyApp extends StatelessWidget {
         GetStarted.id: (context) => const GetStarted(),
         OnBoarding.id: (context) => OnBoarding(),
         StoreHomeScreen.id: (context) => const StoreHomeScreen(),
-        PopularPackScreen.id: (context) => PopularPackScreen(),
+        PopularPackScreen.id: (context) => const PopularPackScreen(),
+        TextFieldScreen.id: (context) => const TextFieldScreen(),
       },
-      initialRoute: StoreHomeScreen.id,
+      initialRoute: TextFieldScreen.id,
     );
   }
 }

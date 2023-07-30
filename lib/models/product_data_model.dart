@@ -103,7 +103,7 @@ List<Product> products = [
   Product(
     name: "Snack Attack",
     description: "Chips, Popcorn...",
-    imageAsset: "assets/images/fruit.png",
+    imageAsset: "assets/images/Fruit.png",
     price: 16,
     discountedPrice: 20.40,
   ),

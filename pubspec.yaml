@@ -94,6 +94,9 @@ flutter:
     - family: Mulish-SemiBold
       fonts:
         - asset: assets/fonts/Mulish-SemiBold.ttf
+    - family: RoosterPersonalUse
+      fonts:
+        - asset: assets\fonts\RoosterPersonalUse-3z8d8.ttf
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
