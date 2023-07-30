@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:iti_flutter_session2/screens/card_screen.dart';
+import 'package:iti_flutter_session2/screens/store_home_screen.dart';
 import 'package:iti_flutter_session2/screens/get_started.dart';
 import 'package:iti_flutter_session2/screens/home_screen.dart';
 import 'package:iti_flutter_session2/screens/login_screen.dart';
@@ -23,9 +23,9 @@ class MyApp extends StatelessWidget {
         LoginScreen.id: (context) => const LoginScreen(),
         GetStarted.id: (context) => const GetStarted(),
         OnBoarding.id: (context) => OnBoarding(),
-        CardScreen.id: (context) => const CardScreen(),
+        StoreHomeScreen.id: (context) => const StoreHomeScreen(),
       },
-      initialRoute: CardScreen.id,
+      initialRoute: StoreHomeScreen.id,
     );
   }
 }

@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-class CardScreen extends StatelessWidget {
-  const CardScreen({super.key});
+class StoreHomeScreen extends StatelessWidget {
+  const StoreHomeScreen({super.key});
 
-  static String id = 'CardScreen';
+  static String id = 'StoreHomeScreen';
 
   @override
   Widget build(BuildContext context) {
